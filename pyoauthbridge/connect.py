@@ -18,8 +18,10 @@ class Connect:
         self.client_secret = client_secret
         self.redirect_url = redirect_url
         redirect_url_split = redirect_url.split(":")
-        if (int(redirect_url_split[2])) :
-            self.port = int(redirect_url_split[2])
+        if len(redirect_url_split) > 2:
+            self.port = int(redirect_url_split[2].split("/")[0])
+        else:
+            self.port = 8080
         url = ""
         if "https" in base_url:
             url = base_url.replace("https", "wss")
